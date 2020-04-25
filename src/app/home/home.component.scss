@@ -1,0 +1,19 @@
+.page-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+.home-title {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 2rem 0;
+
+  @media screen and (min-width: 470px) {
+    font-size: 2rem;
+  }
+}
+.home-image {
+  width: 400px;
+  max-width: 100%;
+}

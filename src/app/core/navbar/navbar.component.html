@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <a class="name-app" mat-button routerLink="/">
+    <mat-icon>store</mat-icon>
+    {{appName}}
+  </a>
+  <a mat-button routerLink="/products" routerLinkActive="active">
+    Productos
+  </a>
+  <span class="fill-remaining-space"></span>
+  <a mat-button routerLink="/login" routerLinkActive="active">
+    Inicia Sesión
+  </a>
+  <a mat-icon-button>
+    <mat-icon>shopping_cart</mat-icon>
+  </a>
+</mat-toolbar>
