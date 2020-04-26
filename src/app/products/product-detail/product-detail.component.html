@@ -1,1 +1,45 @@
-<p>product-detail works!</p>
+<div class="page-container">
+  <div class="page-content">
+    <a class="back-button" mat-stroked-button routerLink="/products">
+      <mat-icon>arrow_back</mat-icon>
+      Regresar
+    </a>
+    <ng-container *ngIf="product, else message">
+      <mat-card class="product-card">
+        <img [src]="product.imageUrl"
+             [alt]="product.productName"
+             class="product-image"
+             mat-card-image>
+        <div class="card-info">
+          <mat-card-title class="product-title">{{pageTitle}}</mat-card-title>
+          <mat-card-subtitle class="product-subtitle">{{product.description}}</mat-card-subtitle>
+
+          <div class="fill-remaining-space"></div>
+          <mat-card-content class="product-content">
+            <mat-form-field class="product-quantity">
+              <mat-label>Cantidad</mat-label>
+              <input matInput type="number" value="1">
+            </mat-form-field>
+            <p class="product-price">{{product.price | currency:'COP':'symbol-narrow':'1.0-0'}}</p>
+          </mat-card-content>
+
+          <mat-card-actions class="product-actions">
+            <button mat-icon-button>
+              <mat-icon class="product-add-icon">add_shopping_cart</mat-icon>
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </ng-container>
+
+    <ng-template #message>
+      <mat-card>
+        <mat-card-title>{{pageTitle}}</mat-card-title>
+        <mat-card-subtitle>{{errorMessage}}</mat-card-subtitle>
+      </mat-card>
+    </ng-template>
+
+  </div>
+</div>
+
+

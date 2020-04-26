@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
+import { ProductDetailResolved } from './product-detail/product-detail-resolver.service';
+
 const routes: Routes = [
   {
     path: '',
@@ -11,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: ProductDetailComponent
+    component: ProductDetailComponent,
+    resolve: { resolvedData: ProductDetailResolved }
   }
 ];
 

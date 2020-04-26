@@ -1,0 +1,33 @@
+.page-content {
+  display: table;
+  margin: 2rem auto;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 250px);
+  grid-gap: 1rem;
+
+  @media screen and (max-width: 1300px) {
+    grid-template-columns: repeat(3, 250px);
+  }
+
+  @media screen and (max-width: 960px){
+    grid-template-columns: repeat(2, 250px);
+  }
+
+  @media screen and (max-width: 650px){
+    grid-template-columns: repeat(1, 250px);
+  }
+}
+.product-card {
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+mat-card-title,
+.card-image {
+  cursor: pointer;
+}
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
