@@ -18,9 +18,9 @@
           <mat-card-content class="product-content">
             <mat-form-field class="product-quantity">
               <mat-label>Cantidad</mat-label>
-              <input matInput type="number" value="1">
+              <input matInput type="number" [formControl]="productQuantityCtrl">
             </mat-form-field>
-            <p class="product-price">{{product.price | currency:'COP':'symbol-narrow':'1.0-0'}}</p>
+            <p class="product-price">{{totalPrice | currency:'COP':'symbol-narrow':'1.0-0'}}</p>
           </mat-card-content>
 
           <mat-card-actions class="product-actions">

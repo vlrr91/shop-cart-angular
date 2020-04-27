@@ -1,30 +1,45 @@
 <div class="page-container">
   <div class="page-content">
-    <div class="products">
-      <mat-card class="product-card"
-                *ngFor="let product of products$ | async"
-                appHoverElevation>
-        <mat-card-header>
-          <mat-card-title [routerLink]="['/products', product.id]">{{product.productName}}</mat-card-title>
-          <mat-card-subtitle>
-            {{product.price | currency:'COP':'symbol-narrow':'1.0-0'}}
-          </mat-card-subtitle>
-        </mat-card-header>
-        <img class="card-image"
-             mat-card-image
-             [src]="product.imageUrl"
-             [alt]="product.productName"
-             [routerLink]="['/products', product.id]">
-        <mat-card-content>
-          <p>{{product.description}}</p>
-        </mat-card-content>
-        <div class="fill-remaining-space"></div>
-        <mat-card-actions>
-          <button mat-icon-button>
-            <mat-icon>add_shopping_cart</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+    <ng-container *ngIf="products; else spinner">
+      <div class="product-search">
+        <mat-form-field>
+          <mat-label>Buscar</mat-label>
+          <input matInput
+                 [formControl]="searchCtrl">
+        </mat-form-field>
+      </div>
+      <div class="products">
+        <mat-card class="product-card"
+                  *ngFor="let product of filteredProducts"
+                  appHoverElevation>
+          <mat-card-header>
+            <mat-card-title [routerLink]="['/products', product.id]">{{product.productName}}</mat-card-title>
+            <mat-card-subtitle>
+              {{product.price | currency:'COP':'symbol-narrow':'1.0-0'}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <img class="card-image"
+               mat-card-image
+               [src]="product.imageUrl"
+               [alt]="product.productName"
+               [routerLink]="['/products', product.id]">
+          <mat-card-content>
+            <p>{{product.description}}</p>
+          </mat-card-content>
+          <div class="fill-remaining-space"></div>
+          <mat-card-actions>
+            <button mat-icon-button>
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </ng-container>
+   <ng-template #spinner>
+     <mat-spinner class="spinner"
+                  color="accent"
+                  diameter="70"
+                  strokeWidth="6"></mat-spinner>
+   </ng-template>
   </div>
 </div>

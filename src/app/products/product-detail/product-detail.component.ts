@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {FormControl, Validators} from '@angular/forms';
 
 import {ProductService} from '../product.service';
 import {Product, ProductResolved} from '../../shared/interfaces';
@@ -13,9 +14,13 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   errorMessage: string;
   pageTitle: string;
+  totalPrice: number;
+  productQuantityCtrl: FormControl;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+    this.productQuantityCtrl = new FormControl('1', [Validators.required]);
+  }
 
   ngOnInit(): void {
     const resolvedData: ProductResolved = this.route.snapshot.data.resolvedData;
@@ -28,5 +33,13 @@ export class ProductDetailComponent implements OnInit {
     this.pageTitle = this.product
       ? `Detalles del producto: ${this.product.productName}`
       : 'Producto no encontrado';
+    this.totalPrice = this.product.price;
+    this.productQuantityCtrl.valueChanges.subscribe(
+      value => this.calcTotalPrice(+value)
+    );
+  }
+
+  calcTotalPrice(quantity: number) {
+    this.totalPrice = this.product.price * quantity;
   }
 }
