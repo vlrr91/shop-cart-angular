@@ -4,3 +4,16 @@
   left: calc(50% - 35px);
   z-index: 10;
 }
+.popup-cart {
+  position: fixed;
+  top: 80px;
+  right: 25px;
+  z-index: 10;
+
+  @media screen and (max-width: 500px) {
+    width: 95%;
+    right: 0;
+    top: 96px;
+    margin-right: 2.5%;
+  }
+}

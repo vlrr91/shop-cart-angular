@@ -12,6 +12,7 @@ import {CoreModule} from './core/core.module';
 
 import { AppComponent } from './app.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {PopupCartModule} from './popup-cart/popup-cart.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     InMemoryWebApiModule.forRoot(ProductData, {delay: 700}),
     HttpClientModule,
     CoreModule,
+    PopupCartModule,
     AppRoutingModule,
     MatProgressSpinnerModule,
   ],

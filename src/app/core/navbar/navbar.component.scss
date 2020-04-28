@@ -1,9 +1,56 @@
+.app-toolbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  @media screen and (max-width: 500px) {
+    height: auto;
+    display: grid;
+    grid-template-areas: "home cart"
+                         "products login";
+  }
+
+}
 .fill-remaining-space {
   flex: 1 1 auto;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 .name-app {
   font-size: 1.1rem;
   mat-icon {
     margin-top: -5px;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: .9rem;
+    justify-self: flex-start;
+    grid-area: home;
+    mat-icon {
+      font-size: 1.1rem;
+      margin-top: 4px;
+    }
+  }
+}
+.nav-products {
+  @media screen and (max-width: 500px) {
+    justify-self: flex-start;
+    grid-area: products;
+  }
+}
+.nav-login {
+  @media screen and (max-width: 500px) {
+    justify-self: flex-end;
+    grid-area: login;
+  }
+}
+.nav-cart {
+  @media screen and (max-width: 500px) {
+    justify-self: flex-end;
+    mat-icon {
+      margin-right: 8px;
+      grid-area: cart;
+    }
   }
 }

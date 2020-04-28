@@ -1,0 +1,20 @@
+<mat-card class="cart">
+  <mat-card-title class="cart-title">Productos Agregados</mat-card-title>
+  <mat-card-content class="cart-content">
+    <ul class="cart-list">
+      <li *ngFor="let product of productsCart"
+          class="cart-item">
+        <img [src]="product.imageUrl"
+             [alt]="product.productName"
+             class="cart-item-img">
+        <h4>{{product.productName}}</h4>
+        <p>1x <span class="product-price">{{product.price}}</span></p>
+      </li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions class="cart-actions">
+    <a mat-stroked-button color="accent">Ver carro</a>
+    <a mat-raised-button color="accent">Revisar</a>
+  </mat-card-actions>
+</mat-card>
+
