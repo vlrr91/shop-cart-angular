@@ -4,6 +4,7 @@ import {FormControl, Validators} from '@angular/forms';
 
 import {ProductService} from '../product.service';
 import {Product, ProductResolved} from '../../shared/interfaces';
+import {CartShoppingService} from '../../core/services/cart-shopping.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,8 +19,9 @@ export class ProductDetailComponent implements OnInit {
   productQuantityCtrl: FormControl;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) {
-    this.productQuantityCtrl = new FormControl('1', [Validators.required]);
+              private route: ActivatedRoute,
+              private cartShoppingService: CartShoppingService) {
+    this.productQuantityCtrl = new FormControl('1', [Validators.required, Validators.min(1)]);
   }
 
   ngOnInit(): void {
@@ -40,6 +42,18 @@ export class ProductDetailComponent implements OnInit {
   }
 
   calcTotalPrice(quantity: number) {
-    this.totalPrice = this.product.price * quantity;
+    if (quantity < 1 || quantity === null) {
+      this.totalPrice = this.product.price;
+    } else {
+      this.totalPrice = this.product.price * quantity;
+    }
+  }
+
+  addProduct(): void {
+    if (this.productQuantityCtrl.valid) {
+      this.cartShoppingService.addItem(this.product, +this.productQuantityCtrl.value);
+    } else {
+      this.productQuantityCtrl.markAllAsTouched();
+    }
   }
 }

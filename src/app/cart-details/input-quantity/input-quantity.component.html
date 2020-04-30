@@ -1,0 +1,10 @@
+<mat-form-field class="item-quantity">
+  <input matInput
+         min="1"
+         type="number"
+         [formControl]="quantityCtrl">
+  <mat-error *ngIf="quantityCtrl.errors && quantityCtrl.touched"
+             class="error">
+    Cantidad no válida
+  </mat-error>
+</mat-form-field>

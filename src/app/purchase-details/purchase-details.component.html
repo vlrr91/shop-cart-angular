@@ -1,0 +1,35 @@
+<div class="page-content">
+  <mat-card class="purchase-card">
+    <ng-container *ngIf="order.length !== 0, else empty">
+      <mat-card-content>
+        <ul class="purchase-list">
+          <mat-card-title class="purchase-title">Productos</mat-card-title>
+          <li class="purchase-item" *ngFor="let item of order">
+            <mat-card-subtitle class="item-name">{{item.product.productName}}</mat-card-subtitle>
+            <mat-card-subtitle class="item-price">
+              <span>
+                {{item.product.price | currency:'COP':'symbol-narrow':'1.0-0'}}
+                x
+                {{item.quantity}}
+              </span>
+              <span class="price">
+                {{item.totalPrice | currency:'COP':'symbol-narrow':'1.0-0'}}
+              </span>
+            </mat-card-subtitle>
+          </li>
+        </ul>
+        <p class="purchase-total">
+          Total: {{totalPrice | currency:'COP':'symbol-narrow':'1.0-0'}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="purchase-actions">
+        <button mat-raised-button color="accent" (click)="confirm()">
+          Confirmar
+        </button>
+      </mat-card-actions>
+    </ng-container>
+    <ng-template #empty>
+      <mat-card-subtitle class="empty">No ha seleccionado productos</mat-card-subtitle>
+    </ng-template>
+  </mat-card>
+</div>

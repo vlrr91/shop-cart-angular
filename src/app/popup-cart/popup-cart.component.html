@@ -1,20 +1,29 @@
 <mat-card class="cart">
   <mat-card-title class="cart-title">Productos Agregados</mat-card-title>
-  <mat-card-content class="cart-content">
-    <ul class="cart-list">
-      <li *ngFor="let product of productsCart"
-          class="cart-item">
-        <img [src]="product.imageUrl"
-             [alt]="product.productName"
-             class="cart-item-img">
-        <h4>{{product.productName}}</h4>
-        <p>1x <span class="product-price">{{product.price}}</span></p>
-      </li>
-    </ul>
-  </mat-card-content>
-  <mat-card-actions class="cart-actions">
-    <a mat-stroked-button color="accent">Ver carro</a>
-    <a mat-raised-button color="accent">Revisar</a>
-  </mat-card-actions>
+  <ng-container *ngIf="order.length !== 0; else empty">
+    <mat-card-content class="cart-content">
+      <ul class="cart-list">
+        <li *ngFor="let item of order"
+            class="cart-item">
+          <img [src]="item.product.imageUrl"
+               [alt]="item.product.productName"
+               class="cart-item-img">
+          <h4>{{item.product.productName}}</h4>
+          <p>{{item.quantity}}x <span class="product-price">{{item.totalPrice | currency:'COP':'symbol-narrow':'1.0-0'}}</span></p>
+        </li>
+      </ul>
+      <mat-card-subtitle class="cart-item-total">
+        Total: {{totalOrder | currency:'COP':'symbol-narrow':'1.0-0'}}
+      </mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions class="cart-actions">
+      <a mat-stroked-button color="accent" (click)="goToCart()">Ver carro</a>
+      <a mat-raised-button color="accent" (click)="goToPurchase()">Comprar</a>
+    </mat-card-actions>
+  </ng-container>
+
+  <ng-template #empty>
+    <mat-card-subtitle>No hay productos agregados</mat-card-subtitle>
+  </ng-template>
 </mat-card>
 

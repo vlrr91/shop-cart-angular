@@ -1,0 +1,55 @@
+.page-content {
+  padding: 5.5rem 1rem 0;
+}
+.purchase-title {
+  font-size: 1.25rem;
+}
+.purchase-card {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+}
+.purchase-list {
+  padding-left: 0;
+  list-style: none;
+}
+.purchase-item {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: 500px) {
+    grid-template-columns: auto;
+    padding-bottom: 1rem;
+  }
+}
+.item-name,
+.item-price {
+  margin: 0;
+}
+.item-price {
+  text-align: right;
+  @media screen and (max-width: 500px) {
+    text-align: left;
+    margin-top: .5rem;
+  }
+  .price {
+    margin-left: 2rem;
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+.empty {
+  text-align: center;
+  font-size: 1rem;
+}
+.purchase-total {
+  font-weight: 500;
+  font-size: 1.5rem;
+  text-align: right;
+  margin-top: 1rem;
+}
+.purchase-actions {
+  display: flex;
+  justify-content: flex-end;
+}

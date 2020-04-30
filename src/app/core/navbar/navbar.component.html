@@ -13,14 +13,23 @@
     Productos
   </a>
   <span class="fill-remaining-space"></span>
-  <a mat-button
+  <a *ngIf="!authService.username"
+     mat-button
      class="nav-login"
      routerLink="/login"
      routerLinkActive="active">
-    Inicia Sesión
+    Iniciar Sesión
+  </a>
+  <a *ngIf="authService.username"
+     mat-button
+     class="nav-login"
+     (click)="signOut()">Cerrar Sesión
   </a>
   <a mat-icon-button
      class="nav-cart"
+     [matBadge]="itemsOrder"
+     [matBadgeHidden]="itemsOrder === '0'"
+     matBadgeColor="accent"
      (click)="toggleCart()">
     <mat-icon>shopping_cart</mat-icon>
   </a>

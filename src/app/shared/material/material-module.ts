@@ -7,6 +7,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MaterialElevationDirective } from './material-elevation.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const materialModules = [
   MatToolbarModule,
@@ -15,6 +18,9 @@ const materialModules = [
   MatCardModule,
   MatProgressSpinnerModule,
   MatInputModule,
+  MatBadgeModule,
+  MatFormFieldModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

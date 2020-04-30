@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import {ProductService} from '../product.service';
-import {Product} from '../../shared/interfaces';
+import { ProductService } from '../product.service';
+import { Product } from '../../shared/interfaces';
+import {CartShoppingService} from '../../core/services/cart-shopping.service';
 
 @Component({
   selector: 'app-products-list',
@@ -14,7 +15,8 @@ export class ProductsListComponent implements OnInit {
   filteredProducts: Product[];
   searchCtrl: FormControl;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private cartShoppingService: CartShoppingService) {
     this.searchCtrl = new FormControl('');
   }
 
@@ -40,5 +42,9 @@ export class ProductsListComponent implements OnInit {
     return text.toLocaleLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  addProduct(product: Product) {
+    this.cartShoppingService.addItem(product, 1);
   }
 }

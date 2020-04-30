@@ -18,13 +18,20 @@
           <mat-card-content class="product-content">
             <mat-form-field class="product-quantity">
               <mat-label>Cantidad</mat-label>
-              <input matInput type="number" [formControl]="productQuantityCtrl">
+              <input matInput
+                     autocomplete="nope"
+                     type="number"
+                     [formControl]="productQuantityCtrl"
+                     min="1">
+              <mat-error *ngIf="productQuantityCtrl.errors && productQuantityCtrl.touched">
+                Cantidad no válida
+              </mat-error>
             </mat-form-field>
             <p class="product-price">{{totalPrice | currency:'COP':'symbol-narrow':'1.0-0'}}</p>
           </mat-card-content>
 
           <mat-card-actions class="product-actions">
-            <button mat-icon-button>
+            <button mat-icon-button (click)="addProduct()">
               <mat-icon class="product-add-icon">add_shopping_cart</mat-icon>
             </button>
           </mat-card-actions>

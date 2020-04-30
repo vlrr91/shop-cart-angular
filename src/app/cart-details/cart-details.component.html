@@ -1,0 +1,58 @@
+<div class="page-content">
+  <mat-card class="cart">
+    <mat-card-title class="cart-title">Carrito de compras</mat-card-title>
+    <ng-container *ngIf="order.length !== 0; else empty">
+
+      <mat-card-content class="cart-content">
+        <ul class="cart-list">
+          <li *ngFor="let item of order"
+              class="cart-item">
+            <img [src]="item.product.imageUrl"
+                 [alt]="item.product.productName"
+                 class="cart-item-img">
+            <div class="cart-item-info">
+              <h4>{{item.product.productName}}</h4>
+              <p>{{item.product.description}}</p>
+            </div>
+
+            <div class="cart-item-price">
+              <div class="price-section">
+               <span class="item-price">
+                {{item.product.price | currency:'COP':'symbol-narrow':'1.0-0'}}x
+               </span>
+
+                <app-input-quantity [id]="item.product.id"
+                                    [quantity]="item.quantity.toString()"
+                                    (quantityChanged)="quantityChanged($event, item.product)"></app-input-quantity>
+
+              </div>
+              <div class="price-section">
+                <span class="item-price">
+                  {{item.totalPrice | currency:'COP':'symbol-narrow':'1.0-0'}}
+                </span>
+                <button color="accent"
+                        mat-icon-button
+                        class="item-delete"
+                        (click)="deleteItem(item.product.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p class="total">Total: {{totalOrder | currency:'COP':'symbol-narrow':'1.0-0'}}</p>
+        <mat-error *ngIf="errorMessage"
+                   class="error-message">{{errorMessage}}</mat-error>
+      </mat-card-content>
+      <mat-card-actions class="cart-actions">
+        <a mat-raised-button
+           color="accent"
+           (click)="goToPurchase()">Comprar</a>
+      </mat-card-actions>
+    </ng-container>
+
+   <ng-template #empty>
+     <mat-card-subtitle>No hay items agregados</mat-card-subtitle>
+   </ng-template>
+  </mat-card>
+</div>

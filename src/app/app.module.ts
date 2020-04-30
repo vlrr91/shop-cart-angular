@@ -21,7 +21,7 @@ import {PopupCartModule} from './popup-cart/popup-cart.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    InMemoryWebApiModule.forRoot(ProductData, {delay: 700}),
+    InMemoryWebApiModule.forRoot(ProductData, { delay: 700 }),
     HttpClientModule,
     CoreModule,
     PopupCartModule,

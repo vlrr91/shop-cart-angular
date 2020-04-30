@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {CartShoppingService} from '../services/cart-shopping.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +10,16 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   appName = 'Shopping Cart';
+  itemsOrder: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private cartShoppingService: CartShoppingService,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
+    this.cartShoppingService.quantityItemsChanged$.subscribe(
+      quantityItems => this.itemsOrder = quantityItems.toString()
+    );
   }
 
   toggleCart(): void {
@@ -22,5 +30,11 @@ export class NavbarComponent implements OnInit {
       this.router.navigate([{outlets: {popup: null }}])
         .then(() => console.log('close popup'));
     }
+  }
+
+  signOut(): void {
+    this.authService.username = undefined;
+    this.cartShoppingService.clearCart();
+    this.router.navigate(['/']);
   }
 }

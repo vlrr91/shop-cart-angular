@@ -1,8 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #e7f2f8;
+}
+
+// Badge cart shopping
+.mat-badge-medium.mat-badge-above .mat-badge-content {
+  top: -5px;
+  @media screen and (max-width: 500px) {
+    top: 3px;
+  }
 }
