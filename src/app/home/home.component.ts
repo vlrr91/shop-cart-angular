@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   titlePage = 'Angular Shopping Cart';
-  urlImage = '/assets/images/home.svg';
+  urlImage = '/assets/images/home1.svg';
 
   constructor() { }
 
