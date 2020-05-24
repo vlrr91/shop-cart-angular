@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {ProductService} from '../product.service';
 import {Product, ProductResolved} from '../../shared/interfaces';
@@ -18,9 +19,9 @@ export class ProductDetailComponent implements OnInit {
   totalPrice: number;
   productQuantityCtrl: FormControl;
 
-  constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private cartShoppingService: CartShoppingService) {
+  constructor(private route: ActivatedRoute,
+              private cartShoppingService: CartShoppingService,
+              private snackBar: MatSnackBar) {
     this.productQuantityCtrl = new FormControl('1', [Validators.required, Validators.min(1)]);
   }
 
@@ -51,9 +52,16 @@ export class ProductDetailComponent implements OnInit {
 
   addProduct(): void {
     if (this.productQuantityCtrl.valid) {
+      this.snackBarAddProduct();
       this.cartShoppingService.addItem(this.product, +this.productQuantityCtrl.value);
     } else {
       this.productQuantityCtrl.markAllAsTouched();
     }
+  }
+
+  snackBarAddProduct(): void {
+    this.snackBar.open('Agregado al carrito!!', 'OK', {
+      duration: 2500,
+    });
   }
 }

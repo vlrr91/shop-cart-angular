@@ -28,8 +28,11 @@
           </mat-card-content>
           <div class="fill-remaining-space"></div>
           <mat-card-actions>
-            <button mat-icon-button (click)="addProduct(product)">
-              <mat-icon>add_shopping_cart</mat-icon>
+            <button
+              mat-raised-button
+              (click)="addProduct(product)"
+              color="primary">
+              Agrega al carrito
             </button>
           </mat-card-actions>
         </mat-card>

@@ -31,8 +31,11 @@
           </mat-card-content>
 
           <mat-card-actions class="product-actions">
-            <button mat-icon-button (click)="addProduct()">
-              <mat-icon class="product-add-icon">add_shopping_cart</mat-icon>
+            <button
+              mat-raised-button
+              (click)="addProduct()"
+              color="primary">
+              Agregar al carrito
             </button>
           </mat-card-actions>
         </div>

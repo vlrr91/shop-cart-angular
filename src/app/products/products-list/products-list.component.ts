@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ProductService } from '../product.service';
 import { Product } from '../../shared/interfaces';
@@ -14,9 +15,11 @@ export class ProductsListComponent implements OnInit {
   products: Product[];
   filteredProducts: Product[];
   searchCtrl: FormControl;
+  firstTimeAddProduct: boolean = false;
 
   constructor(private productService: ProductService,
-              private cartShoppingService: CartShoppingService) {
+              private cartShoppingService: CartShoppingService,
+              private snackBar: MatSnackBar) {
     this.searchCtrl = new FormControl('');
   }
 
@@ -45,6 +48,13 @@ export class ProductsListComponent implements OnInit {
   }
 
   addProduct(product: Product) {
+    this.snackBarAddProduct();
     this.cartShoppingService.addItem(product, 1);
+  }
+
+  snackBarAddProduct(): void {
+    this.snackBar.open('Producto agregado!!', 'OK', {
+      duration: 2500,
+    });
   }
 }
