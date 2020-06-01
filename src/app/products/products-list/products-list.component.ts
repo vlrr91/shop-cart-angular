@@ -15,7 +15,6 @@ export class ProductsListComponent implements OnInit {
   products: Product[];
   filteredProducts: Product[];
   searchCtrl: FormControl;
-  firstTimeAddProduct: boolean = false;
 
   constructor(private productService: ProductService,
               private cartShoppingService: CartShoppingService,
